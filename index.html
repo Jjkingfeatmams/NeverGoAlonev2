@@ -202,6 +202,7 @@
     .scroll {
       flex: 1;
       overflow: auto;
+      overflow-x: hidden;
       padding: 0 20px 88px;
       scrollbar-width: none;
       overscroll-behavior: contain;
@@ -858,7 +859,28 @@
     }
     .launch-feedback h2 { margin: 0 0 5px; font-size: 16px; }
     .launch-feedback > p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
-    .launch-feedback .field { margin: 14px 0 0; }
+    .launch-feedback .field { min-width: 0; margin: 14px 0 0; }
+    .launch-option {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      align-items: start;
+      width: 100%;
+      min-width: 0;
+      gap: 10px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .launch-option input {
+      box-sizing: border-box;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      accent-color: var(--brand);
+    }
+    .launch-option span { min-width: 0; overflow-wrap: anywhere; }
 
     .live-banner {
       display: flex;
@@ -2251,13 +2273,13 @@
           "<p class='tiny'>🪪 " + esc(i18n("Au lancement, les profils seront vérifiés avec une pièce d’identité. Ce prototype ne demande aucun document.", "At launch, profiles will be verified with government-issued ID. This prototype does not request any document.")) + "</p>" +
           "<section class='launch-feedback' aria-labelledby='launch-feedback-heading'><h2 id='launch-feedback-heading'>💬 " + esc(i18n("Ton retour sur l’application", "Your feedback about the app")) + "</h2><p>" + esc(i18n("Ces réponses sont envoyées au formulaire de lancement. Elles ne sont jamais visibles dans le groupe.", "These answers are sent to the launch questionnaire. They are never visible in the group.")) + "</p>" +
           "<div class='field'><label>" + esc(i18n("À quel point aimerais-tu utiliser Never Go Alone ?", "How interested are you in using Never Go Alone?")) + "</label>" +
-          "<label class='check'><input type='radio' name='live-launch-interest' value='very' required><span>" + esc(i18n("Très intéressé·e — je l’utiliserais dès son lancement", "Very interested — I would use it right away")) + "</span></label>" +
-          "<label class='check'><input type='radio' name='live-launch-interest' value='interested'><span>" + esc(i18n("Intéressé·e — j’aimerais l’essayer", "Interested — I would like to try it")) + "</span></label>" +
-          "<label class='check'><input type='radio' name='live-launch-interest' value='curious'><span>" + esc(i18n("Curieux·se, mais pas encore sûr·e", "Curious, but not sure yet")) + "</span></label></div>" +
+          "<label class='launch-option'><input type='radio' name='live-launch-interest' value='very' required><span>" + esc(i18n("Très intéressé·e — je l’utiliserais dès son lancement", "Very interested — I would use it right away")) + "</span></label>" +
+          "<label class='launch-option'><input type='radio' name='live-launch-interest' value='interested'><span>" + esc(i18n("Intéressé·e — j’aimerais l’essayer", "Interested — I would like to try it")) + "</span></label>" +
+          "<label class='launch-option'><input type='radio' name='live-launch-interest' value='curious'><span>" + esc(i18n("Curieux·se, mais pas encore sûr·e", "Curious, but not sure yet")) + "</span></label></div>" +
           "<div class='field'><label for='live-launch-feedback'>" + esc(i18n("Qu’aimerais-tu le plus retrouver ou voir ajouté ?", "What did you like most, or what would you like to see added?")) + "</label><textarea id='live-launch-feedback' name='launchFeedback' maxlength='600' required placeholder='" + esc(i18n("Ton idée ou ton retour…", "Your idea or feedback…")) + "'></textarea></div>" +
           "<div class='field'><label>" + esc(i18n("Serais-tu disponible pour un échange de 10 minutes ?", "Would you be open to a quick 10-minute chat?")) + "</label>" +
-          "<label class='check'><input type='radio' name='live-launch-chat' value='yes' required><span>" + esc(i18n("Oui, vous pouvez me contacter", "Yes, feel free to contact me")) + "</span></label>" +
-          "<label class='check'><input type='radio' name='live-launch-chat' value='no'><span>" + esc(i18n("Non, merci", "No, thanks")) + "</span></label></div></section>" +
+          "<label class='launch-option'><input type='radio' name='live-launch-chat' value='yes' required><span>" + esc(i18n("Oui, vous pouvez me contacter", "Yes, feel free to contact me")) + "</span></label>" +
+          "<label class='launch-option'><input type='radio' name='live-launch-chat' value='no'><span>" + esc(i18n("Non, merci", "No, thanks")) + "</span></label></div></section>" +
           "<div class='honeypot' aria-hidden='true'><label for='live-website'>Website</label><input id='live-website' name='website' tabindex='-1' autocomplete='off'></div>" +
           "<label class='check'><input id='live-adult' type='checkbox' required><span>" + esc(i18n("J’ai au moins 18 ans.", "I am at least 18 years old.")) + "</span></label>" +
           "<label class='check'><input id='live-public-consent' type='checkbox' required><span>" + esc(i18n("J’accepte que mon prénom, mon âge, ma nationalité, mon genre renseigné, mon activité, ma description, mes passions et mon avatar illustré soient visibles sur la fiche de cet événement. Mon nom et mon e-mail ne seront jamais affichés.", "I agree that my first name, age, nationality, chosen gender, activity, introduction, passions and illustrated avatar can appear on this event page. My last name and email will never be displayed.")) + "</span></label>" +
